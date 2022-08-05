@@ -1,0 +1,11 @@
+black
+git+https://github.com/notionparallax/pytestgen.git
+mypy
+pytest
+wheel
+bvn_values
+pandas
+ipykernel
+matplotlib
+numpy
+pandas-stubs
