@@ -20,6 +20,15 @@ book_table_df.head()
 book_table = db.table("books")
 author_table = db.table("authors")
 
+#%% Make a little viz of the subjects in the library
+
+subjects = []
+for s in book_table_df.Subject:
+    if type(s) is str:
+        subjects.extend(s.split("|"))
+print(f"there are {len(set(subjects))} unique subjects")
+svc = pd.Series(subjects).value_counts()
+svc[svc > 10].plot(kind="barh", figsize=(6, 10))
 #%%
 def get_role(a):
     role = ""
