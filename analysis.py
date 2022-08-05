@@ -5,18 +5,17 @@ import json
 import pandas as pd
 from tinydb import Query, TinyDB
 
-db = TinyDB(
-    "library.json",
-    sort_keys=True,
-    indent=4,
-)
+#%% set up the DB
+db = TinyDB("library.json", sort_keys=True, indent=4)
 q = Query()
 
-#%%
+#%% Load the library CSV
 book_table_df = pd.read_excel("Library Books.xlsx")
 # book_table_df = book_table_df.head(20)
 book_table_df.head()
-# %%
+
+# %% This section makes a DB of the books and authors:
+# There are a lot of things still to do with this, i.e. there's no studio split etc.
 book_table = db.table("books")
 author_table = db.table("authors")
 
@@ -64,7 +63,8 @@ for i, row in book_table_df.iterrows():
     )
 
 
-# %%
+# %% So now we have a DB, we can load it back in as dataframes and do some things to it
+# Not the most efficient way to do this, I'm sure, but we do also get a DB while we're at it
 with open("library.json", "r", encoding="utf-8") as lib_json:
     library_json = json.load(lib_json)
 
@@ -91,7 +91,7 @@ author_df.set_index("id", inplace=True)
 author_df["book_list"] = author_df.apply(lambda _: [], axis=1)
 author_df.head()
 
-#%%
+#%% Make a backreference to the books so we can tell who wrote what.
 for i, row in book_df.iterrows():
     if len(row.authors) != 0:
         for a_id in row.authors:
@@ -104,7 +104,7 @@ for i, row in book_df.iterrows():
 author_df["book_count"] = author_df["book_list"].apply(lambda x: len(x))
 
 author_df.head()
-# %%
+# %% dump to a csv to start adding extra columns
 author_df.to_csv("authors.csv")
 
 # %%
