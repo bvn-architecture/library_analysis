@@ -96,4 +96,6 @@ author_df["book_count"] = author_df["book_list"].apply(lambda x: len(x))
 
 author_df.head()
 # %%
-author_df.to_excel("authors.xlsx")
+author_df.to_csv("authors.csv")
+
+# %%
