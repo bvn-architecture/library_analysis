@@ -9,3 +9,5 @@ ipykernel
 matplotlib
 numpy
 pandas-stubs
+tinydb
+openpyxl

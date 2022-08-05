@@ -134,6 +134,8 @@ six==1.16.0
     # via python-dateutil
 stack-data==0.3.0
     # via ipython
+tinydb==4.7.0
+    # via -r requirements.in
 tomli==2.0.1
     # via
     #   black
