@@ -34,7 +34,8 @@ plt.xlabel("count")
 plt.title(f"Number of books with this subject\n(showing only those over {cut} books)")
 plt.savefig("plots/subjects.png")
 #%% Make a list of ESD books for adrian
-# book_table_df[["ESD" in str(sub) for sub in book_table_df.Subject ]].to_csv("esd_books.csv")
+# esd_books = book_table_df[["ESD" in str(sub) for sub in book_table_df.Subject]]
+# esd_books.to_csv("esd_books.csv")
 
 #%%
 def get_role(a):
