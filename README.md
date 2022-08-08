@@ -29,7 +29,7 @@ Then jump into analysis.py and go sick.
 
 ## TODO
 
-* There's a new file that has some _catalogued on_ dates, merge that in. The data is in `to come soon`.
+* There's a new file that has some _catalogued on_ dates, merge that in. The data is in `books.csv`.
 * The data ingestion file should be separate to the analysis file
 * How many books does Sydney/Brisbane have? Is there a bias in subject?
 * Work on cleaning and splitting up the other columns. E.g. in this entry:
