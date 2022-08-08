@@ -3,6 +3,7 @@ import os
 import json
 
 import pandas as pd
+import matplotlib.pyplot as plt
 from tinydb import Query, TinyDB
 
 #%% set up the DB
@@ -21,13 +22,20 @@ author_table = db.table("authors")
 
 #%% Make a little viz of the subjects in the library
 
+cut = 10
 subjects = []
 for s in book_table_df.Subject:
     if type(s) is str:
         subjects.extend(s.split("|"))
 print(f"there are {len(set(subjects))} unique subjects")
 svc = pd.Series(subjects).value_counts()
-svc[svc > 10].plot(kind="barh", figsize=(6, 10))
+svc[svc > cut].plot(kind="barh", figsize=(6, 10))
+plt.xlabel("count")
+plt.title(f"Number of books with this subject\n(showing only those over {cut} books)")
+plt.savefig("plots/subjects.png")
+#%% Make a list of ESD books for adrian
+# book_table_df[["ESD" in str(sub) for sub in book_table_df.Subject ]].to_csv("esd_books.csv")
+
 #%%
 def get_role(a):
     role = ""
